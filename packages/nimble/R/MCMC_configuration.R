@@ -42,6 +42,7 @@ samplerConf <- setRefClass(
 )
 
 
+
 ## NOTE: methods are documented as a "docstring" with each method - see 'removeSamplers' below. roxygen will automatically grab info from these docstrings and inject into the Rd in the Methods Section
 ## NOTE: including the name of the class in @aliases is important because by default we only get help("MCMCconf-class") and not help(MCMCconf)
 ## NOTE: the empty lines are important in the final formatting, so please don't remove any of them in your own help info
