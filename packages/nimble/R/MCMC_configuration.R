@@ -735,7 +735,9 @@ For internal use only
 
         filterOutDataNodes = function(nodes) {
             nodes <- model$expandNodeNames(nodes)
-            return(nodes[!model$isData(nodes)])
+            # We don't filter out partially observed data nodes
+            gIDs <- model$modelDef$nodeName2GraphIDs(nodes)
+            return(nodes[model$isDataFromGraphID(gIDs, includeMixed=TRUE) != 1])
         },
         
         removeSamplers = function(..., ind, print = FALSE) {
