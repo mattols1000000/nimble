@@ -191,6 +191,11 @@ print: A logical argument specifying whether to print the montiors and samplers.
             if(missing(nodes)) {
                 nodes <- model$getNodeNames(stochOnly = TRUE, includeData = FALSE)
                 # Check of all(model$isStoch(nodes)) is not needed in this case
+                # Check and adds any partially observed nodes
+                mixedDataNodeNames <- model$getMixedDataNodeNames()
+                if (length(midexDataNodeNames)) {
+                  nodes <- model$topologicallySortNodes(c(nodes, mixedDataNodeNames))
+                }
             } else if(is.null(nodes) || length(nodes)==0) {
                 nodes <- character(0)
             } else   nodes <- filterOutDataNodes(nodes)   ## configureMCMC *never* assigns samplers to data nodes
